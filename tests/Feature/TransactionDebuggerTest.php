@@ -104,6 +104,26 @@ class TransactionDebuggerTest extends TestCase
             ->assertDontSee('Checkout initiated');
     }
 
+    public function test_timeline_sorts_timestamped_events_before_events_without_times(): void
+    {
+        $order = $this->order([
+            'created_at' => now()->subHour(),
+            'last_checked_at' => now()->subMinutes(20),
+            'paid_at' => now()->subMinutes(10),
+            'status' => Order::PAID,
+            'provider_response' => ['status' => 'success'],
+        ]);
+
+        $timeline = $this->actingAs($this->admin)
+            ->get(route('admin.transactions.show', $order))->assertOk()->viewData('timeline');
+        $this->assertSame([
+            'Order created',
+            'Payment verification attempted',
+            'Current status: PAID',
+            'Provider response received',
+        ], array_column($timeline, 'label'));
+    }
+
     public function test_results_are_paginated_and_invalid_filters_are_rejected(): void
     {
         foreach (range(1, 26) as $index) {
