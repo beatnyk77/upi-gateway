@@ -94,7 +94,7 @@
         </div>
 
         <div data-for="paytm_business manual">
-            <x-input name="upi_id" label="UPI ID" placeholder="paytmqr28100505xxxxxx@paytm" class="font-mono" />
+            <x-input name="upi_id" label="UPI ID" placeholder="paytmqr28100505xxxxxx@paytm" class="font-mono" help="Use an active UPI ID that your bank or provider confirms can receive payments. This form checks the format only." />
         </div>
 
         <div data-for="phonepe_pg paytm_pg" class="mb-5">

@@ -137,6 +137,11 @@ class PersonalUpiCompatibilityTest extends TestCase
         $this->get(route('pay.show', $order))
             ->assertOk()
             ->assertSee('upi://pay?pa=kiran%40upi', false)
+            ->assertSee('Choose a UPI app to pay')
+            ->assertSee('receiver cannot accept payment')
+            ->assertDontSee('tez://upi/pay', false)
+            ->assertDontSee('phonepe://pay', false)
+            ->assertDontSee('paytmmp://pay', false)
             ->assertDontSee('tr='.$order->order_no);
 
         // QR code image response
