@@ -150,7 +150,7 @@ catch_workers_output = yes
 php_admin_value[display_errors] = Off
 php_admin_value[log_errors] = On
 php_admin_value[error_log] = {temp}/php.log
-php_admin_value[session.save_path] = {native_sessions}
+php_value[session.save_path] = {native_sessions}
 """)
     servers = []
     deployed_apps = {app}
