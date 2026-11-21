@@ -417,7 +417,7 @@ SetHandler "proxy:fcgi://127.0.0.1:{fpm_port}"
                     cookie_name = 'upi_setup_' + hashlib.sha256((str(app_mounts[name].resolve()) + path).encode()).hexdigest()[:16]
                     session_id = secrets.token_hex(24)
                     session_seed = 'ini_set("session.save_path", $argv[1]); session_name($argv[2]); session_id($argv[3]); session_start(); $_SESSION["_installer_completed"]=true; session_write_close();'
-                    subprocess.run([PHP, '-r', session_seed, str(native_sessions), cookie_name, session_id], check=True, capture_output=True)
+                    subprocess.run([PHP, '-r', session_seed, str(app_mounts[name] / 'storage/framework/sessions'), cookie_name, session_id], check=True, capture_output=True)
                     cookies.append({'name': cookie_name, 'value': session_id, 'domain': name, 'path': path + '/', 'httpOnly': True, 'secure': False, 'sameSite': 'Lax'})
             browser = subprocess.Popen(['node', str(PROJECT / 'tests/Hosting/browser_check.cjs')], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, env=browser_environment)
             try:
