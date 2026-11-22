@@ -6,10 +6,10 @@
     $amount = number_format($order->amount, 2);
     $totalSeconds = max(1, $order->created_at->diffInSeconds($order->expires_at ?? now()->addMinutes(config('gateway.order_expiry_minutes', 15))));
     $apps = [
-        ['GPay',    'text-[#1a73e8]', 'images/upi/gpay.png'],
-        ['PhonePe', 'text-[#5f259f]', 'images/upi/phonepe.png'],
-        ['Paytm',   'text-[#00baf2]', 'images/upi/paytm.png'],
-        ['BHIM',    'text-[#f47920]', 'images/upi/bhim.png'],
+        ['GPay',    'tez://upi/pay',   'text-[#1a73e8]', 'images/upi/gpay.png'],
+        ['PhonePe', 'phonepe://pay',   'text-[#5f259f]', 'images/upi/phonepe.png'],
+        ['Paytm',   'paytmmp://pay',   'text-[#00baf2]', 'images/upi/paytm.png'],
+        ['BHIM',    'upi://pay',       'text-[#f47920]', 'images/upi/bhim.png'],
     ];
 @endphp
 
@@ -134,7 +134,7 @@
                             <button class="btn btn-primary btn-lg w-full"><x-icon name="lock" class="w-5 h-5" /> Pay ₹{{ $amount }} with {{ $pgName }}</button>
                         </form>
                         <div class="mt-4 flex flex-wrap justify-center gap-2">
-                            @foreach ($apps as [$name, $color, $logo])
+                            @foreach ($apps as [$name, $scheme, $color, $logo])
                                 <span class="rounded-full bg-slate-50 ring-1 ring-slate-200 px-3 py-1 text-xs font-bold {{ $color }} flex items-center gap-1.5">
                                     <img src="{{ asset($logo) }}" class="w-4 h-4 rounded-sm" alt="{{ $name }}">{{ $name }}
                                 </span>
@@ -177,18 +177,24 @@
                     </div>
 
                     <div class="mt-5 flex flex-wrap justify-center gap-2">
-                        @foreach ($apps as [$name, $color, $logo])
+                        @foreach ($apps as [$name, $scheme, $color, $logo])
                             <span class="rounded-full bg-slate-50 ring-1 ring-slate-200 px-3 py-1 text-xs font-bold {{ $color }} flex items-center gap-1.5">
                                 <img src="{{ asset($logo) }}" class="w-4 h-4 rounded-sm" alt="{{ $name }}">{{ $name }}
                             </span>
                         @endforeach
                     </div>
 
-                    {{-- Use the interoperable UPI URI so the phone can choose an installed app. --}}
+                    {{-- On phones, open the UPI app directly --}}
                     <div class="md:hidden mt-6 space-y-3">
                         <div class="flex items-center gap-3 text-xs text-slate-400"><span class="h-px flex-1 bg-slate-200"></span>OR PAY ON THIS PHONE<span class="h-px flex-1 bg-slate-200"></span></div>
-                        <a href="{{ $order->upiIntentUrl() }}" class="btn btn-primary btn-lg w-full"><x-icon name="phone" class="w-5 h-5" /> Choose a UPI app to pay ₹{{ $amount }}</a>
-                        <p class="text-center text-xs text-slate-500">If your app says this receiver cannot accept payment, do not retry this UPI ID. Ask {{ $merchant }} for another active receiving UPI ID. If your account was debited, check the transaction status first.</p>
+                        <a href="{{ $order->upiIntentUrl() }}" class="btn btn-primary btn-lg w-full"><x-icon name="phone" class="w-5 h-5" /> Pay ₹{{ $amount }} with UPI app</a>
+                        <div class="grid grid-cols-3 gap-2">
+                            @foreach (array_slice($apps, 0, 3) as [$name, $scheme, $color, $logo])
+                                <a href="{{ $order->upiIntentUrl($scheme) }}" class="btn btn-secondary font-bold {{ $color }} flex items-center justify-center gap-1.5">
+                                    <img src="{{ asset($logo) }}" class="w-5 h-5 rounded-sm" alt="{{ $name }}">{{ $name }}
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
 
                     <div class="mt-6 flex items-center justify-between gap-3 rounded-xl bg-slate-50 ring-1 ring-slate-200 px-4 py-3">
