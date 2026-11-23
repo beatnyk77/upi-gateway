@@ -1,4 +1,4 @@
-# <img src="docs/icons/bank.svg" width="24" height="24" alt=""/> UPI Gateway
+# 🏦 UPI Gateway
 
 <h3 align="center">A Multi-Merchant UPI Payment Gateway</h3>
 
@@ -23,32 +23,7 @@
 
 ---
 
-## ❤️ Support My Work
-
-If you find my projects useful, enjoy using my work, or appreciate the time and effort behind these open-source contributions, consider supporting me with a small donation.
-
-Your support, no matter how small, motivates me to keep building, maintaining, and improving open-source projects and creating more useful tools for the developer community.
-
-Every contribution is genuinely appreciated. Thank you for being part of this journey!
-
-<p align="center">
-  <img src="./screenshots/donation_upi_qr.jpeg" width="200" alt="UPI Donation QR Code"/>
-</p>
-
-<p align="center">
-  **UPI ID:** `6388401024@digikhata`
-</p>
-
-
-<p align="center">
-  <sub>Scan the QR code or click the button to donate using your preferred UPI app.</sub>
-</p>
-
-**Thank you for supporting independent developers and open source!** 🙌
-
----
-
-## <img src="docs/icons/rocket.svg" width="18" height="18" alt=""/> Quick Installation
+## 🚀 Quick Installation
 
 UPI Gateway includes a browser-based installer. For a hosting-server installation, use the prepared production package: it includes the production `vendor/` dependencies and compiled frontend assets, so **SSH, Composer, Node.js, and npm are not required on the hosting server**.
 
@@ -112,7 +87,7 @@ When asking for help, share your hosting provider, PHP version, deployment type 
 
 ---
 
-## <img src="docs/icons/globe.svg" width="18" height="18" alt=""/> Live Demo
+## 🌐 Live Demo
 
 Explore the UPI Gateway application through our live demo:
 
@@ -133,7 +108,7 @@ The demo account has restricted merchant-level access and cannot access administ
 
 ---
 
-## <img src="docs/icons/package.svg" width="18" height="18" alt=""/> Release Status
+## 📦 Release Status
 
 **v1.1.0 is currently a stable release candidate; a v1.1.0 Git tag and GitHub Release have not been published.** The rolling production package is published at the download link above.
 
@@ -143,7 +118,7 @@ The project includes the browser installer, MySQL production configuration, paym
 
 ---
 
-## <img src="docs/icons/book.svg" width="18" height="18" alt=""/> Overview
+## 📖 Overview
 
 UPI Gateway is a self-hosted, multi-merchant payment management platform designed for businesses that want to integrate UPI payments into their applications.
 
@@ -163,12 +138,13 @@ Each merchant can configure their own UPI accounts, generate dynamic payment QR 
 - Webhook event IDs and sequence numbers for merchant-side deduplication and ordering
 - Manual UTR verification and review flow
 - Merchant API authentication
+- Merchant-managed allowed redirect domains for payment return URLs
 - Centralized administration dashboard
 - Browser-based installation wizard for cPanel and VPS deployments
 
 ---
 
-## <img src="docs/icons/camera.svg" width="18" height="18" alt=""/> Screenshots
+## 📸 Screenshots
 
 ### Homepage
 <p align="center">
@@ -218,27 +194,27 @@ Each merchant can configure their own UPI accounts, generate dynamic payment QR 
 
 ---
 
-## <img src="docs/icons/sparkles.svg" width="18" height="18" alt=""/> Features
+## ✨ Features
 
-### <img src="docs/icons/building.svg" width="18" height="18" alt=""/> Multi-Merchant Management
+### 🏢 Multi-Merchant Management
 - Independent merchant accounts.
 - Merchant-specific API credentials.
 - Individual UPI payment account configuration.
 - Centralized administration and monitoring.
 
-### <img src="docs/icons/smartphone.svg" width="18" height="18" alt=""/> Dynamic UPI Payments
+### 📱 Dynamic UPI Payments
 - Dynamic UPI payment QR generation.
 - Unique transaction reference for every order.
 - Hosted checkout and payment pages.
 - UPI intent integration.
 
-### <img src="docs/icons/refresh.svg" width="18" height="18" alt=""/> Payment Verification
+### 🔄 Payment Verification
 - Paytm for Business verification integration.
 - Paytm Payment Gateway integration.
 - PhonePe Payment Gateway integration.
 - Manual UTR verification and review fallback.
 
-### <img src="docs/icons/scale.svg" width="18" height="18" alt=""/> UPI Account Rotation
+### ⚖️ UPI Account Rotation
 - Configure multiple UPI accounts.
 - Distribute payment requests across configured accounts for operational load balancing and redundancy.
 - Account-level daily limits with automatic rollover to available accounts.
@@ -257,7 +233,7 @@ Each merchant can configure their own UPI accounts, generate dynamic payment QR 
 - Durable webhook outbox, delivery logs, and queue retry handling.
 - At-least-once delivery with event IDs and sequence numbers for merchant-side idempotency and ordering.
 
-### <img src="docs/icons/shield.svg" width="18" height="18" alt=""/> Security & Administration
+### 🛡️ Security & Administration
 - API key and secret authentication.
 - Merchant isolation.
 - Transaction monitoring.
@@ -267,7 +243,7 @@ Each merchant can configure their own UPI accounts, generate dynamic payment QR 
 
 ---
 
-## <img src="docs/icons/architecture.svg" width="18" height="18" alt=""/> System Architecture
+## 🏗️ System Architecture
 
 ```mermaid
 flowchart TD
@@ -296,7 +272,7 @@ flowchart TD
 
 ---
 
-## <img src="docs/icons/settings.svg" width="18" height="18" alt=""/> Technology Stack
+## ⚙️ Technology Stack
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=laravel,php,mysql,js,tailwind,html,css&theme=light" alt="Technology Stack"/>
@@ -316,7 +292,7 @@ flowchart TD
 
 ---
 
-## <img src="docs/icons/rocket.svg" width="18" height="18" alt=""/> Installation
+## 🚀 Installation
 
 Install UPI Gateway using the browser-based wizard included in the prepared production package. The hosting server does not need SSH, Composer, Node.js, or npm.
 
@@ -361,7 +337,7 @@ When contacting support, include your hosting provider, PHP version, deployment 
 
 ---
 
-## <img src="docs/icons/lock.svg" width="18" height="18" alt=""/> Environment Configuration
+## 🔐 Environment Configuration
 
 For command-line or development deployments, configure the following variables in your `.env` file. The browser installer configures the application during guided installation.
 
@@ -400,7 +376,7 @@ Public `/register` GET and POST requests return 404 while `ALLOW_REGISTRATION=fa
 
 ---
 
-## <img src="docs/icons/database.svg" width="18" height="18" alt=""/> MySQL Configuration
+## 🗄️ MySQL Configuration
 
 MySQL is required for installation and production runtime. SQLite is used only by the automated test suite.
 
@@ -417,7 +393,7 @@ DB_PASSWORD=your_password
 
 ---
 
-## <img src="docs/icons/plug.svg" width="18" height="18" alt=""/> Supported Payment Integrations
+## 🔌 Supported Payment Integrations
 
 | Provider | Integration Type | Verification | Status |
 |---|---|---|---|
@@ -439,7 +415,7 @@ DB_PASSWORD=your_password
 
 ---
 
-## <img src="docs/icons/radio.svg" width="18" height="18" alt=""/> API Reference
+## 📡 API Reference
 
 All merchant API requests require:
 
@@ -460,6 +436,12 @@ Full API documentation is available at `/docs` when the application is running.
 
 Sandbox credentials use the `test_key_...` / `test_sec_...` pair and create internal TEST transactions only. Live and Sandbox credentials, orders, account lists, webhook URLs, and financial totals are isolated.
 
+### Allowed Redirect Domains and Return URL
+
+Each merchant can open **Dashboard → Settings → Allowed redirect domains** and save the hostnames that may receive customers after a payment. Enter one hostname per line, such as `example.com` or `shop.example.com`, without a scheme, path, or port. An allowed hostname also permits its subdomains.
+
+To use a return URL, include an HTTPS `redirect_url` when creating an order, for example `https://shop.example.com/payment/complete`. The API rejects the URL if no allowed domains have been saved or its hostname is outside the merchant's list. The checkout checks the allowlist again before redirecting, so removing a domain also prevents redirects for existing orders.
+
 ### Create Payment Order
 
 **Request:**
@@ -471,7 +453,8 @@ curl -X POST https://yourdomain.com/api/v1/orders \
   -H "Content-Type: application/json" \
   -d '{
     "amount": 199,
-    "client_order_id": "INV1001"
+    "client_order_id": "INV1001",
+    "redirect_url": "https://shop.example.com/payment/complete"
   }'
 ```
 
@@ -552,7 +535,7 @@ switch ($event['event'] ?? '') {
 
 ---
 
-## <img src="docs/icons/shield.svg" width="18" height="18" alt=""/> Production Security Checklist
+## 🛡️ Production Security Checklist
 
 Before accepting production traffic:
 
@@ -573,7 +556,7 @@ Before accepting production traffic:
 
 ---
 
-## <img src="docs/icons/factory.svg" width="18" height="18" alt=""/> Production Deployment
+## 🏭 Production Deployment
 
 ### Release checklist
 
@@ -589,7 +572,7 @@ For server configuration, queue worker, scheduler, permissions, and SSL instruct
 
 ---
 
-## <img src="docs/icons/plus.svg" width="18" height="18" alt=""/> Adding a Payment Provider
+## ➕ Adding a Payment Provider
 
 The platform supports extending payment verification through provider-specific verifier implementations.
 
@@ -644,7 +627,7 @@ composer run test
 
 ---
 
-## <img src="docs/icons/folder.svg" width="18" height="18" alt=""/> Project Structure
+## 📂 Project Structure
 
 ```text
 upi-gateway/
@@ -681,7 +664,7 @@ This is a representative structure; adapt it to the actual repository layout.
 
 ---
 
-## <img src="docs/icons/file.svg" width="18" height="18" alt=""/> License
+## 📄 License
 
 Distributed under the MIT License.
 
@@ -689,7 +672,7 @@ See the `LICENSE` file for details.
 
 ---
 
-## <img src="docs/icons/mail.svg" width="18" height="18" alt=""/> Contact & Connect
+## 📬 Contact & Connect
 
 Have a question, collaboration idea, business inquiry, or technical discussion? Feel free to get in touch.
 
@@ -708,16 +691,16 @@ Have a question, collaboration idea, business inquiry, or technical discussion? 
   </a>
 </p>
 
-### <img src="docs/icons/globe.svg" width="18" height="18" alt=""/> Professional Links
+### 🌐 Professional Links
 
 | Platform | Details |
 |---|---|
-| <img src="docs/icons/mail.svg" width="18" height="18" alt=""/> Email | mayanksingh3132@gmail.com |
-| <img src="docs/icons/globe.svg" width="18" height="18" alt=""/> Portfolio | [mayankdeveloper.site](https://mayankdeveloper.site) |
-| <img src="docs/icons/briefcase.svg" width="18" height="18" alt=""/> LinkedIn | [linkedin.com/in/mynk-dev](https://linkedin.com/in/mynk-dev) |
-| <img src="docs/icons/building.svg" width="18" height="18" alt=""/> Company | [amtechinfo.online](https://amtechinfo.online) |
-| <img src="docs/icons/plane.svg" width="18" height="18" alt=""/> Telegram | [@mayankdeveloper](https://t.me/mayankdeveloper) |
-| <img src="docs/icons/github.svg" width="18" height="18" alt=""/> GitHub | [@mynkdev-21](https://github.com/mynkdev-21) |
+| 📧 Email | mayanksingh3132@gmail.com |
+| 🌐 Portfolio | [mayankdeveloper.site](https://mayankdeveloper.site) |
+| 💼 LinkedIn | [linkedin.com/in/mynk-dev](https://linkedin.com/in/mynk-dev) |
+| 🏢 Company | [amtechinfo.online](https://amtechinfo.online) |
+| ✈️ Telegram | [@mayankdeveloper](https://t.me/mayankdeveloper) |
+| 🐙 GitHub | [@mynkdev-21](https://github.com/mynkdev-21) |
 
 ---
 
@@ -728,5 +711,5 @@ Have a question, collaboration idea, business inquiry, or technical discussion? 
 </p>
 
 <p align="center">
-  <b>Built with <img src="docs/icons/heart.svg" width="18" height="18" alt=""/> for Indian merchants.</b>
+  <b>Built with ❤️ for Indian merchants.</b>
 </p>

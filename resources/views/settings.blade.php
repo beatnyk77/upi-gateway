@@ -170,6 +170,24 @@
         </div>
     </section>
 
+    {{-- Redirect domains --}}
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-10 border-t border-slate-200">
+        <div>
+            <h2 class="text-base font-semibold text-slate-900">Allowed redirect domains</h2>
+            <p class="mt-1 text-sm text-slate-500">After a successful payment, customers can return to a URL on one of these domains.</p>
+        </div>
+        <form method="POST" action="{{ route('settings.redirect-domains') }}" class="card p-6 lg:col-span-2 space-y-4">
+            @csrf
+            <div>
+                <label for="redirect_domains" class="label">Domains</label>
+                <textarea id="redirect_domains" name="redirect_domains" rows="4" maxlength="2000" style="min-height: 7rem;" class="input font-mono @error('redirect_domains') border-red-400 @enderror" placeholder="example.com&#10;shop.example.com">{{ old('redirect_domains', implode("\n", $user->allowedRedirectDomains())) }}</textarea>
+                <p class="help">Enter one hostname per line, without https:// or a path. Only these domains can receive payment return redirects.</p>
+                @error('redirect_domains')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+            </div>
+            <div class="flex justify-end"><button class="btn btn-primary">Save allowed domains</button></div>
+        </form>
+    </section>
+
     {{-- Profile --}}
     <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-10 border-t border-slate-200">
         <div>

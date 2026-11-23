@@ -108,15 +108,22 @@ class SettingsController extends Controller
             'redirect_domains' => ['nullable', 'string', 'max:2000'],
         ]);
 
-        // Parse newline/comma-separated list into an array of clean hostnames.
-        $raw = $data['redirect_domains'] ?? '';
-        $domains = array_values(array_filter(
-            array_map(
-                fn ($d) => preg_replace('#^https?://#', '', strtolower(trim($d))),
-                preg_split('/[\n,]+/', $raw)
-            ),
-            fn ($d) => $d !== '' && preg_match('/^[a-z0-9.\-]+$/', $d)
-        ));
+        $domains = [];
+        foreach (preg_split('/[\n,]+/', $data['redirect_domains'] ?? '') as $entry) {
+            $domain = strtolower(trim($entry));
+            if ($domain === '') {
+                continue;
+            }
+            $domain = preg_replace('#^https?://#', '', $domain);
+            $domain = rtrim($domain, '/');
+            if (! preg_match('/^(?=.{1,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/', $domain)) {
+                throw ValidationException::withMessages([
+                    'redirect_domains' => 'Enter valid hostnames only, one per line, without a path or port.',
+                ]);
+            }
+            $domains[] = $domain;
+        }
+        $domains = array_values(array_unique($domains));
 
         $request->user()->update(['redirect_domains' => $domains ?: null]);
 

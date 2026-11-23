@@ -126,7 +126,7 @@ class TransactionDebuggerController extends Controller
             ?? $order->sandbox_simulated_at;
         $events[] = ['time' => $finalTime, 'label' => 'Current status: '.strtoupper($order->status), 'detail' => $order->verified_by ? 'Verified by '.$order->verified_by : null, 'icon' => $order->status === Order::PAID ? 'check-circle' : 'clock'];
 
-        usort($events, fn (array $a, array $b) => $a['time'] && $b['time'] ? $a['time'] <=> $b['time'] : ($a['time'] ? -1 : ($b['time'] ? 1 : 0)));
+        usort($events, fn (array $a, array $b) => $a['time'] && $b['time'] ? $a['time']->compare($b['time']) : ($a['time'] ? -1 : ($b['time'] ? 1 : 0)));
 
         return $events;
     }

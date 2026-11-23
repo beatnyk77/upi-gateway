@@ -131,11 +131,22 @@ class PaymentAccountController extends Controller
     {
         $this->authorizeOwner($request, $account);
 
-        if ($account->orders()->exists()) {
+        $deleted = DB::transaction(function () use ($request, $account) {
+            // Order creation locks the merchant first, then the account. Use
+            // the same lock order so deletion cannot race with a new order.
+            $request->user()->newQuery()->whereKey($request->user()->id)->lockForUpdate()->firstOrFail();
+            $locked = PaymentAccount::whereKey($account->id)->lockForUpdate()->firstOrFail();
+            if ($locked->orders()->exists()) {
+                return false;
+            }
+            $locked->delete();
+
+            return true;
+        });
+
+        if (! $deleted) {
             return back()->withErrors(['account' => 'This account has orders. Disable it instead of deleting.']);
         }
-
-        $account->delete();
 
         return back()->with('status', 'Account deleted.');
     }

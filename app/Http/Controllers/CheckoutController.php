@@ -24,6 +24,10 @@ class CheckoutController extends Controller
             $order = $this->orders->check($order);
         }
 
+        if ($order->status === Order::PAID && ($returnUrl = $this->redirectUrl($order)) !== null) {
+            return redirect()->away($returnUrl);
+        }
+
         return view('pay', ['order' => $order->load('paymentAccount', 'user')]);
     }
 

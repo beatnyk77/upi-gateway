@@ -17,9 +17,6 @@ return [
 
     'default' => env('CACHE_STORE', 'database'),
 
-    // Rate limits must use shared storage across PHP workers and app nodes.
-    'limiter' => env('CACHE_LIMITER', 'database'),
-
     /*
     |--------------------------------------------------------------------------
     | Cache Stores
